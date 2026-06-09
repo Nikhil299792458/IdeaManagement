@@ -41,6 +41,10 @@
   --max-width: 1240px;
   --body-font: "Manrope", "Avenir Next", "Helvetica Neue", Arial, sans-serif;
   --heading-font: "Newsreader", "Iowan Old Style", Georgia, serif;
+  --safe-top: env(safe-area-inset-top, 0px);
+  --safe-right: env(safe-area-inset-right, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+  --safe-left: env(safe-area-inset-left, 0px);
 }
 
 body[data-theme="dark"] {
@@ -77,6 +81,7 @@ body[data-theme="dark"] {
 
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 body {
@@ -86,6 +91,10 @@ body {
   color: var(--text);
   font-family: var(--body-font);
   line-height: 1.6;
+  overflow-x: hidden;
+  padding-right: var(--safe-right);
+  padding-bottom: var(--safe-bottom);
+  padding-left: var(--safe-left);
 }
 
 button,
@@ -133,7 +142,7 @@ a {
   position: sticky;
   top: 0;
   z-index: 30;
-  padding: 1rem 0;
+  padding: calc(1rem + var(--safe-top)) 0 1rem;
   backdrop-filter: blur(18px);
   background: linear-gradient(180deg, rgba(245, 241, 234, 0.88), rgba(245, 241, 234, 0.56));
   border-bottom: 1px solid rgba(255, 255, 255, 0.14);
@@ -203,6 +212,7 @@ body[data-theme="dark"] .site-header {
 
 .tab {
   flex: 0 0 auto;
+  min-height: 2.75rem;
   border: 1px solid transparent;
   border-radius: 999px;
   background: transparent;
@@ -228,6 +238,7 @@ body[data-theme="dark"] .site-header {
 
 .button,
 .mini-button {
+  min-height: 2.75rem;
   transition: transform 180ms ease, box-shadow 180ms ease, background 180ms ease, border-color 180ms ease, color 180ms ease;
 }
 
@@ -1046,7 +1057,7 @@ input[type="checkbox"] {
 }
 
 .site-footer {
-  padding: 0 0 var(--space-8);
+  padding: 0 0 calc(var(--space-8) + var(--safe-bottom));
 }
 
 .footer-grid {
@@ -1174,7 +1185,7 @@ textarea:focus-visible {
   }
 
   .site-header {
-    padding: 0.8rem 0;
+    padding: calc(0.8rem + var(--safe-top)) 0 0.8rem;
   }
 
   .hero-section {

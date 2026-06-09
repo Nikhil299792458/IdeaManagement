@@ -391,4 +391,3 @@ If Android file handling is unreliable on a specific device:
 - Papers should remain the primary output layer
 
 The system is intentionally biased toward execution, not unlimited collection.
-# IdeaManagement
