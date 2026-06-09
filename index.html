@@ -1,0 +1,920 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Idea Execution Console helps researchers capture ideas, limit active work, time-block execution, and finish papers.">
+  <title>Idea Execution Console</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Newsreader:opsz,wght@6..72,500;6..72,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <a class="skip-link" href="#appExperience">Skip to workspace</a>
+
+  <header id="top" class="site-header">
+    <div class="page-shell site-header-shell">
+      <a class="brand-link" href="#top" aria-label="Idea Execution Console home">
+        <span class="brand-mark">IEC</span>
+        <span class="brand-copy">
+          <strong>Idea Execution Console</strong>
+          <small>Research execution system</small>
+        </span>
+      </a>
+
+      <nav class="tab-bar" aria-label="Primary navigation">
+        <div class="tab-scroll">
+          <button type="button" class="tab is-active" data-view-target="dashboard" data-scroll-target="appExperience">Dashboard</button>
+          <button type="button" class="tab" data-view-target="ideaGarden" data-scroll-target="appExperience">Ideas</button>
+          <button type="button" class="tab" data-view-target="currentWork" data-scroll-target="appExperience">Current Work</button>
+          <button type="button" class="tab" data-view-target="urgentWork" data-scroll-target="appExperience">Urgent Work</button>
+          <button type="button" class="tab" data-view-target="timeBlocking" data-scroll-target="appExperience">Time Blocking</button>
+          <button type="button" class="tab" data-view-target="paperTracker" data-scroll-target="appExperience">Papers</button>
+          <button type="button" class="tab" data-view-target="weeklyReview" data-scroll-target="appExperience">Review</button>
+        </div>
+      </nav>
+
+      <div class="site-header-actions">
+        <button type="button" id="themeToggle" class="button subtle nav-theme-toggle">Toggle dark mode</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero-section">
+      <div class="page-shell hero-shell">
+        <div class="hero-copy">
+          <p class="eyebrow">Research productivity, redesigned</p>
+          <h1>Turn research ideas into finished work.</h1>
+          <p class="hero-text">
+            Idea Execution Console helps researchers capture ideas, limit active work, time-block execution,
+            track paper progress, and move from scattered possibilities to finished outputs.
+          </p>
+
+          <div class="hero-cta-row">
+            <button type="button" class="button hero-cta" data-view-target="dashboard" data-scroll-target="appExperience">Open Dashboard</button>
+            <button type="button" class="button subtle hero-cta" data-view-target="ideaGarden" data-scroll-target="appExperience">Add New Idea</button>
+            <button type="button" class="button ghost hero-cta" data-view-target="timeBlocking" data-scroll-target="appExperience">Plan Today</button>
+          </div>
+
+          <div class="hero-proof">
+            <span class="rule-pill">Limit active work to 3</span>
+            <span class="rule-pill">Keep ideas private by default</span>
+            <span class="rule-pill">Deploy as a static site on GitHub Pages</span>
+          </div>
+        </div>
+
+        <div class="hero-preview-shell">
+          <article class="hero-preview-card">
+            <div class="hero-preview-header">
+              <div>
+                <p class="eyebrow">Live product preview</p>
+                <h2>Research cockpit</h2>
+              </div>
+              <span id="heroCurrentDate" class="date-pill">Today</span>
+            </div>
+
+            <div class="hero-metric-grid">
+              <article class="metric-card">
+                <span class="metric-label">Active work</span>
+                <strong id="heroActiveWorkCount" class="metric-value">0</strong>
+              </article>
+              <article class="metric-card">
+                <span class="metric-label">Urgent work</span>
+                <strong id="heroUrgentWorkCount" class="metric-value">0</strong>
+              </article>
+              <article class="metric-card">
+                <span class="metric-label">New ideas</span>
+                <strong id="heroNewIdeasCount" class="metric-value">0</strong>
+              </article>
+              <article class="metric-card">
+                <span class="metric-label">Papers tracked</span>
+                <strong id="heroPaperCount" class="metric-value">0</strong>
+              </article>
+            </div>
+
+            <div class="hero-preview-grid">
+              <section class="preview-panel">
+                <div class="preview-panel-header">
+                  <p class="eyebrow">Focus</p>
+                  <h3>Top priorities</h3>
+                </div>
+                <div id="heroPriorityPreview" class="stack-list compact-list"></div>
+              </section>
+
+              <section class="preview-panel">
+                <div class="preview-panel-header">
+                  <p class="eyebrow">Calendar</p>
+                  <h3>Today's schedule</h3>
+                </div>
+                <div id="heroSchedulePreview" class="stack-list compact-list"></div>
+              </section>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="feature-section">
+      <div class="page-shell">
+        <div class="section-intro">
+          <p class="eyebrow">How it works</p>
+          <h2>From idea capture to paper completion.</h2>
+          <p>
+            The system is designed to reduce cognitive sprawl. Capture new ideas, restrict active commitments,
+            plan execution time, and keep papers moving toward submission.
+          </p>
+        </div>
+
+        <div class="feature-grid">
+          <article class="feature-card card">
+            <p class="feature-step">01</p>
+            <h3>Capture ideas</h3>
+            <p>Route every idea through the Idea Garden before it competes for attention.</p>
+          </article>
+          <article class="feature-card card">
+            <p class="feature-step">02</p>
+            <h3>Limit active work</h3>
+            <p>Keep only a few live projects so the next physical action is always visible.</p>
+          </article>
+          <article class="feature-card card">
+            <p class="feature-step">03</p>
+            <h3>Block execution time</h3>
+            <p>Convert priorities into scheduled deep-work blocks that actually fit your day.</p>
+          </article>
+          <article class="feature-card card">
+            <p class="feature-step">04</p>
+            <h3>Finish papers</h3>
+            <p>Treat papers as the output layer with stage tracking and section completion checks.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="audience-section">
+      <div class="page-shell audience-shell">
+        <div class="section-intro">
+          <p class="eyebrow">Built for researchers</p>
+          <h2>Designed for real academic execution, not vague motivation.</h2>
+          <p>
+            Whether you are managing a thesis chapter, simulations, paper revisions, or conference deadlines,
+            the console keeps the work narrow enough to finish.
+          </p>
+        </div>
+
+        <div class="audience-grid">
+          <article class="audience-card">
+            <h3>PhD thesis work</h3>
+            <p>Break large thesis goals into active, visible, daily execution.</p>
+          </article>
+          <article class="audience-card">
+            <h3>Research papers</h3>
+            <p>Track drafts, sections, revisions, figures, and readiness for submission.</p>
+          </article>
+          <article class="audience-card">
+            <h3>Experiments and simulations</h3>
+            <p>Keep debugging, setup, and analysis tied to deadlines and current projects.</p>
+          </article>
+          <article class="audience-card">
+            <h3>Conference deadlines</h3>
+            <p>Surface urgent tasks early so deadlines stop ambushing your schedule.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="appExperience" class="workspace-section">
+      <div class="page-shell">
+        <div class="workspace-hero">
+          <div class="workspace-copy">
+            <p class="eyebrow">Execution workspace</p>
+            <h2>Operate the console.</h2>
+            <p>
+              Everything below is fully functional. Your data stays in-browser by default, with export/import
+              and optional GitHub gist sync for device-to-device continuity.
+            </p>
+          </div>
+
+          <div class="workspace-toolbar">
+            <button type="button" id="exportButton" class="button">Export JSON</button>
+            <label for="importInput" class="button subtle">Import JSON</label>
+            <input type="file" id="importInput" accept=".json,application/json" hidden>
+            <button type="button" id="resetDemoButton" class="button danger">Reset demo data</button>
+          </div>
+        </div>
+
+        <div class="workspace-meta-grid">
+          <article class="workspace-note card">
+            <p class="eyebrow">App philosophy</p>
+            <h3>Execution over accumulation</h3>
+            <p>
+              New ideas belong in the garden first. Active work should stay limited. Papers are the main output.
+            </p>
+          </article>
+
+          <article class="workspace-note card">
+            <p class="eyebrow">Static by design</p>
+            <h3>Private, portable, GitHub Pages-friendly</h3>
+            <p>
+              No backend, no build step, and no paid services required. Everything runs as a static app.
+            </p>
+          </article>
+        </div>
+
+        <section class="sync-card card">
+          <div class="sync-card-header">
+            <div>
+              <p class="eyebrow">Optional cloud save</p>
+              <h2>GitHub JSON Sync</h2>
+            </div>
+            <span class="status-chip">Local autosave on</span>
+          </div>
+
+          <form id="githubSyncForm" class="sync-form">
+            <label class="span-2">
+              GitHub token
+              <input
+                type="password"
+                id="githubToken"
+                name="token"
+                autocomplete="off"
+                placeholder="Fine-grained token with Gists write permission"
+              >
+            </label>
+
+            <label>
+              Gist ID
+              <input
+                type="text"
+                id="githubGistId"
+                name="gistId"
+                placeholder="Leave blank to create the JSON file on first save"
+              >
+            </label>
+
+            <label class="checkbox-row sync-checkbox">
+              <input type="checkbox" id="githubAutoSync" name="autoSync">
+              Auto-sync changes to GitHub after local saves
+            </label>
+
+            <div class="form-actions span-2">
+              <button type="button" id="githubSaveButton" class="button">Save to GitHub</button>
+              <button type="button" id="githubLoadButton" class="button subtle">Load from GitHub</button>
+              <button type="button" id="githubClearSettingsButton" class="button subtle">Clear GitHub settings</button>
+            </div>
+          </form>
+
+          <p id="githubSyncStatus" class="helper-text">
+            Local autosave is always on. GitHub sync is optional and writes a JSON backup file to a secret gist.
+          </p>
+          <a id="githubSyncLink" class="text-link hidden" href="#" target="_blank" rel="noreferrer">Open saved GitHub JSON</a>
+        </section>
+
+        <div id="toast" class="toast" role="status" aria-live="polite" aria-atomic="true"></div>
+
+        <div class="app-main">
+          <section class="view is-active" data-view="dashboard">
+            <div class="section-heading">
+              <div>
+                <p class="eyebrow">Today at a glance</p>
+                <h2>Dashboard</h2>
+                <p>See the shape of the day, the current load, and the work that most deserves attention.</p>
+              </div>
+              <div id="todayDate" class="date-pill"></div>
+            </div>
+
+            <div class="dashboard-intro">
+              <article class="card emphasis-card">
+                <p class="eyebrow">Operating rule</p>
+                <h3>Active work stays deliberately constrained.</h3>
+                <p>
+                  If you exceed the active-work limit, the app should make that visible immediately. Narrowing the
+                  lane is part of the product, not an optional suggestion.
+                </p>
+                <div id="dashboardOverloadWarning" class="inline-alert hidden">
+                  You are overloading yourself. Finish or park something.
+                </div>
+              </article>
+
+              <div class="stats-grid">
+                <article class="card stat-card">
+                  <span class="stat-label">Active work</span>
+                  <strong id="activeWorkCount" class="stat-value">0</strong>
+                </article>
+                <article class="card stat-card">
+                  <span class="stat-label">Urgent work</span>
+                  <strong id="urgentWorkCount" class="stat-value">0</strong>
+                </article>
+                <article class="card stat-card">
+                  <span class="stat-label">New ideas</span>
+                  <strong id="newIdeasCount" class="stat-value">0</strong>
+                </article>
+                <article class="card stat-card">
+                  <span class="stat-label">Parked ideas</span>
+                  <strong id="parkedIdeasCount" class="stat-value">0</strong>
+                </article>
+                <article class="card stat-card">
+                  <span class="stat-label">Completed tasks</span>
+                  <strong id="completedTasksCount" class="stat-value">0</strong>
+                </article>
+              </div>
+            </div>
+
+            <div class="dashboard-panels">
+              <article class="card">
+                <div class="card-header">
+                  <div>
+                    <p class="eyebrow">Execution focus</p>
+                    <h3>Top 3 priority tasks</h3>
+                  </div>
+                </div>
+                <div id="topPriorityList" class="stack-list"></div>
+              </article>
+
+              <article class="card">
+                <div class="card-header">
+                  <div>
+                    <p class="eyebrow">Calendar for today</p>
+                    <h3>Today's time blocks</h3>
+                  </div>
+                </div>
+                <div id="todayTimeBlocks" class="stack-list"></div>
+              </article>
+            </div>
+          </section>
+
+          <section class="view" data-view="ideaGarden">
+            <div class="section-heading">
+              <div>
+                <p class="eyebrow">Capture before commitment</p>
+                <h2>Idea Garden</h2>
+                <p>Collect, filter, and evaluate ideas before they compete for active execution slots.</p>
+              </div>
+            </div>
+
+            <div class="workspace-grid">
+              <article class="card form-card">
+                <div class="card-header">
+                  <div>
+                    <p class="eyebrow">Seed or refine</p>
+                    <h3>Add or edit an idea</h3>
+                  </div>
+                </div>
+
+                <form id="ideaForm" class="form-grid">
+                  <input type="hidden" name="id">
+
+                  <label>
+                    Idea title
+                    <input type="text" name="title" required>
+                  </label>
+
+                  <label class="span-2">
+                    Description
+                    <textarea name="description" rows="4"></textarea>
+                  </label>
+
+                  <label>
+                    Category
+                    <select name="category">
+                      <option>Paper</option>
+                      <option>Thesis</option>
+                      <option>Simulation</option>
+                      <option>Experiment</option>
+                      <option>Code</option>
+                      <option>Reading</option>
+                      <option>Personal</option>
+                      <option>Other</option>
+                    </select>
+                  </label>
+
+                  <label>
+                    Source
+                    <select name="source">
+                      <option>AI</option>
+                      <option>advisor</option>
+                      <option>paper</option>
+                      <option>experiment</option>
+                      <option>self</option>
+                    </select>
+                  </label>
+
+                  <label>
+                    Effort
+                    <select name="effort">
+                      <option>Low</option>
+                      <option>Medium</option>
+                      <option>High</option>
+                    </select>
+                  </label>
+
+                  <label>
+                    Impact
+                    <select name="impact">
+                      <option>Low</option>
+                      <option>Medium</option>
+                      <option>High</option>
+                    </select>
+                  </label>
+
+                  <label>
+                    Urgency
+                    <select name="urgency">
+                      <option>Low</option>
+                      <option>Medium</option>
+                      <option>High</option>
+                    </select>
+                  </label>
+
+                  <label>
+                    Status
+                    <select name="status">
+                      <option>New</option>
+                      <option>Parked</option>
+                      <option>Active</option>
+                      <option>Completed</option>
+                      <option>Killed</option>
+                    </select>
+                  </label>
+
+                  <label>
+                    Related paper/project
+                    <input type="text" name="related">
+                  </label>
+
+                  <label class="span-2">
+                    Notes
+                    <textarea name="notes" rows="3"></textarea>
+                  </label>
+
+                  <div class="form-actions span-2">
+                    <button type="submit" class="button">Save idea</button>
+                    <button type="button" class="button subtle" data-reset-form="ideaForm">Clear</button>
+                  </div>
+                </form>
+              </article>
+
+              <div class="section-content">
+                <article class="card filter-card">
+                  <div class="filter-grid">
+                    <label>
+                      Search ideas
+                      <input type="search" id="ideaSearch" placeholder="Search title, description, notes...">
+                    </label>
+
+                    <label>
+                      Filter by status
+                      <select id="ideaStatusFilter">
+                        <option value="all">All statuses</option>
+                        <option value="New">New</option>
+                        <option value="Parked">Parked</option>
+                        <option value="Active">Active</option>
+                        <option value="Completed">Completed</option>
+                        <option value="Killed">Killed</option>
+                      </select>
+                    </label>
+
+                    <label>
+                      Filter by category
+                      <select id="ideaCategoryFilter">
+                        <option value="all">All categories</option>
+                        <option value="Paper">Paper</option>
+                        <option value="Thesis">Thesis</option>
+                        <option value="Simulation">Simulation</option>
+                        <option value="Experiment">Experiment</option>
+                        <option value="Code">Code</option>
+                        <option value="Reading">Reading</option>
+                        <option value="Personal">Personal</option>
+                        <option value="Other">Other</option>
+                      </select>
+                    </label>
+                  </div>
+                </article>
+
+                <div id="ideaList" class="entity-grid"></div>
+              </div>
+            </div>
+          </section>
+
+          <section class="view" data-view="currentWork">
+            <div class="section-heading">
+              <div>
+                <p class="eyebrow">Narrow execution lane</p>
+                <h2>Current Work</h2>
+                <p>Keep active work small enough that each project still has a visible next physical action.</p>
+              </div>
+            </div>
+
+            <div id="activeWorkWarning" class="inline-alert hidden">
+              You are overloading yourself. Finish or park something.
+            </div>
+
+            <div class="workspace-grid">
+              <article class="card form-card">
+                <div class="card-header">
+                  <div>
+                    <p class="eyebrow">Execution detail</p>
+                    <h3>Add or edit active work</h3>
+                  </div>
+                </div>
+
+                <form id="currentWorkForm" class="form-grid">
+                  <input type="hidden" name="id">
+
+                  <label>
+                    Project/task title
+                    <input type="text" name="title" required>
+                  </label>
+
+                  <label class="span-2">
+                    Goal
+                    <textarea name="goal" rows="3"></textarea>
+                  </label>
+
+                  <label class="span-2">
+                    Why it matters
+                    <textarea name="why" rows="3"></textarea>
+                  </label>
+
+                  <label class="span-2">
+                    Next physical action
+                    <textarea name="nextAction" rows="2"></textarea>
+                  </label>
+
+                  <label>
+                    Deadline
+                    <input type="date" name="deadline">
+                  </label>
+
+                  <label>
+                    Priority
+                    <select name="priority">
+                      <option>P1</option>
+                      <option>P2</option>
+                      <option>P3</option>
+                    </select>
+                  </label>
+
+                  <label>
+                    Progress %
+                    <input type="number" name="progress" min="0" max="100" step="1" value="0">
+                  </label>
+
+                  <label>
+                    Status
+                    <select name="status">
+                      <option>Not started</option>
+                      <option>In progress</option>
+                      <option>Waiting</option>
+                      <option>Done</option>
+                    </select>
+                  </label>
+
+                  <label class="span-2">
+                    Blocker
+                    <textarea name="blocker" rows="2"></textarea>
+                  </label>
+
+                  <div class="form-actions span-2">
+                    <button type="submit" class="button">Save work item</button>
+                    <button type="button" class="button subtle" data-reset-form="currentWorkForm">Clear</button>
+                  </div>
+                </form>
+              </article>
+
+              <div class="section-content">
+                <article class="card info-card">
+                  <div class="info-strip">
+                    <div>
+                      <p class="eyebrow">Constraint</p>
+                      <strong>Only 3 active items at a time</strong>
+                    </div>
+                    <div id="currentWorkSummary" class="summary-pill">0 active projects</div>
+                  </div>
+                </article>
+
+                <div id="currentWorkList" class="entity-grid"></div>
+              </div>
+            </div>
+          </section>
+
+          <section class="view" data-view="urgentWork">
+            <div class="section-heading">
+              <div>
+                <p class="eyebrow">Immediate deadlines</p>
+                <h2>Urgent Work</h2>
+                <p>Surface the short-horizon tasks that carry real consequences if they slip.</p>
+              </div>
+            </div>
+
+            <div class="workspace-grid">
+              <article class="card form-card">
+                <div class="card-header">
+                  <div>
+                    <p class="eyebrow">Deadline capture</p>
+                    <h3>Add or edit urgent work</h3>
+                  </div>
+                </div>
+
+                <form id="urgentWorkForm" class="form-grid">
+                  <input type="hidden" name="id">
+
+                  <label>
+                    Task
+                    <input type="text" name="task" required>
+                  </label>
+
+                  <label>
+                    Deadline
+                    <input type="date" name="deadline" required>
+                  </label>
+
+                  <label class="span-2">
+                    Consequence if not done
+                    <textarea name="consequence" rows="3"></textarea>
+                  </label>
+
+                  <label>
+                    Estimated time
+                    <input type="text" name="estimatedTime" placeholder="e.g. 1.5 h">
+                  </label>
+
+                  <label>
+                    Related project
+                    <input type="text" name="relatedProject">
+                  </label>
+
+                  <label class="checkbox-row span-2">
+                    <input type="checkbox" name="done">
+                    Mark as done
+                  </label>
+
+                  <div class="form-actions span-2">
+                    <button type="submit" class="button">Save urgent task</button>
+                    <button type="button" class="button subtle" data-reset-form="urgentWorkForm">Clear</button>
+                  </div>
+                </form>
+              </article>
+
+              <div class="section-content">
+                <div id="urgentWorkList" class="entity-grid"></div>
+              </div>
+            </div>
+          </section>
+
+          <section class="view" data-view="timeBlocking">
+            <div class="section-heading">
+              <div>
+                <p class="eyebrow">Daily execution</p>
+                <h2>Time Blocking</h2>
+                <p>Plan the day around the work that matters, then see what was completed.</p>
+              </div>
+            </div>
+
+            <datalist id="activeWorkSuggestions"></datalist>
+
+            <div class="workspace-grid">
+              <article class="card form-card">
+                <div class="card-header">
+                  <div>
+                    <p class="eyebrow">Schedule a block</p>
+                    <h3>Add or edit a time block</h3>
+                  </div>
+                </div>
+
+                <form id="timeBlockForm" class="form-grid">
+                  <input type="hidden" name="id">
+
+                  <label>
+                    Date
+                    <input type="date" name="date" required>
+                  </label>
+
+                  <label>
+                    Start time
+                    <input type="time" name="startTime" required>
+                  </label>
+
+                  <label>
+                    End time
+                    <input type="time" name="endTime" required>
+                  </label>
+
+                  <label class="span-2">
+                    Task/project
+                    <input type="text" name="task" list="activeWorkSuggestions" required>
+                  </label>
+
+                  <label>
+                    Type
+                    <select name="type">
+                      <option>Deep work</option>
+                      <option>Writing</option>
+                      <option>Simulation</option>
+                      <option>Reading</option>
+                      <option>Admin</option>
+                      <option>Rest</option>
+                    </select>
+                  </label>
+
+                  <label class="checkbox-row">
+                    <input type="checkbox" name="completed">
+                    Completed
+                  </label>
+
+                  <label class="span-2">
+                    Notes
+                    <textarea name="notes" rows="3"></textarea>
+                  </label>
+
+                  <div class="form-actions span-2">
+                    <button type="submit" class="button">Save time block</button>
+                    <button type="button" class="button subtle" data-reset-form="timeBlockForm">Clear</button>
+                  </div>
+                </form>
+              </article>
+
+              <div class="section-content">
+                <article class="card filter-card">
+                  <div class="filter-grid">
+                    <label>
+                      Schedule date
+                      <input type="date" id="scheduleDateFilter">
+                    </label>
+                  </div>
+
+                  <div class="stat-strip">
+                    <div>
+                      <span class="stat-label">Planned hours</span>
+                      <strong id="plannedHoursValue">0.0</strong>
+                    </div>
+                    <div>
+                      <span class="stat-label">Completed hours</span>
+                      <strong id="completedHoursValue">0.0</strong>
+                    </div>
+                  </div>
+
+                  <p id="timeBlockConnectionNote" class="helper-text"></p>
+                </article>
+
+                <div id="timeBlockSchedule" class="timeline-list"></div>
+              </div>
+            </div>
+          </section>
+
+          <section class="view" data-view="paperTracker">
+            <div class="section-heading">
+              <div>
+                <p class="eyebrow">Primary output</p>
+                <h2>Paper Completion Tracker</h2>
+                <p>Track papers as production systems, from rough idea through figures, review, and submission.</p>
+              </div>
+            </div>
+
+            <div class="workspace-grid">
+              <article class="card form-card">
+                <div class="card-header">
+                  <div>
+                    <p class="eyebrow">Paper status</p>
+                    <h3>Add or edit a paper</h3>
+                  </div>
+                </div>
+
+                <form id="paperForm" class="form-grid">
+                  <input type="hidden" name="id">
+
+                  <label>
+                    Paper title
+                    <input type="text" name="paperTitle" required>
+                  </label>
+
+                  <label>
+                    Target journal/conference
+                    <input type="text" name="targetVenue">
+                  </label>
+
+                  <label class="span-2">
+                    Current stage
+                    <select name="currentStage">
+                      <option>Idea</option>
+                      <option>Outline</option>
+                      <option>Figures</option>
+                      <option>Results</option>
+                      <option>Discussion</option>
+                      <option>Introduction</option>
+                      <option>Abstract</option>
+                      <option>References</option>
+                      <option>Internal review</option>
+                      <option>Submitted</option>
+                      <option>Revision</option>
+                    </select>
+                  </label>
+
+                  <fieldset class="checklist-fieldset span-2">
+                    <legend>Sections checklist</legend>
+                    <p class="checklist-intro">Mark the paper components that are already in a submission-ready state.</p>
+                    <div class="checklist-grid">
+                      <label class="checklist-option"><input type="checkbox" name="section-title"><span>Title</span></label>
+                      <label class="checklist-option"><input type="checkbox" name="section-abstract"><span>Abstract</span></label>
+                      <label class="checklist-option"><input type="checkbox" name="section-introduction"><span>Introduction</span></label>
+                      <label class="checklist-option"><input type="checkbox" name="section-methods"><span>Methods</span></label>
+                      <label class="checklist-option"><input type="checkbox" name="section-results"><span>Results</span></label>
+                      <label class="checklist-option"><input type="checkbox" name="section-discussion"><span>Discussion</span></label>
+                      <label class="checklist-option"><input type="checkbox" name="section-conclusion"><span>Conclusion</span></label>
+                      <label class="checklist-option"><input type="checkbox" name="section-figures"><span>Figures</span></label>
+                      <label class="checklist-option"><input type="checkbox" name="section-captions"><span>Captions</span></label>
+                      <label class="checklist-option"><input type="checkbox" name="section-references"><span>References</span></label>
+                      <label class="checklist-option"><input type="checkbox" name="section-supplementaryMaterial"><span>Supplementary material</span></label>
+                    </div>
+                  </fieldset>
+
+                  <label class="span-2">
+                    Notes
+                    <textarea name="notes" rows="3"></textarea>
+                  </label>
+
+                  <div class="form-actions span-2">
+                    <button type="submit" class="button">Save paper</button>
+                    <button type="button" class="button subtle" data-reset-form="paperForm">Clear</button>
+                  </div>
+                </form>
+              </article>
+
+              <div class="section-content">
+                <div id="paperList" class="entity-grid"></div>
+              </div>
+            </div>
+          </section>
+
+          <section class="view" data-view="weeklyReview">
+            <div class="section-heading">
+              <div>
+                <p class="eyebrow">Reset the system weekly</p>
+                <h2>Weekly Review</h2>
+                <p>Close loops, park distractions, kill bad bets, and set the next week's top execution targets.</p>
+              </div>
+              <div id="reviewWeekLabel" class="date-pill"></div>
+            </div>
+
+            <article class="card">
+              <form id="weeklyReviewForm" class="review-grid">
+                <label>
+                  What did I finish?
+                  <textarea name="finished" rows="4" placeholder="List completed experiments, writing milestones, or decisions."></textarea>
+                </label>
+
+                <label>
+                  What is stuck?
+                  <textarea name="stuck" rows="4" placeholder="Name blockers clearly so they can be resolved or deprioritized."></textarea>
+                </label>
+
+                <label>
+                  Which ideas should be parked?
+                  <textarea name="parkIdeas" rows="4" placeholder="Call out attractive distractions before they leak into active work."></textarea>
+                </label>
+
+                <label>
+                  Which active project should be killed?
+                  <textarea name="killProject" rows="4" placeholder="If a project is not earning its slot, say it directly."></textarea>
+                </label>
+
+                <label class="span-2">
+                  What are the top 3 tasks for next week?
+                  <textarea name="topThreeTasks" rows="4" placeholder="Use one line per task for a crisp weekly handoff."></textarea>
+                </label>
+
+                <div class="form-actions span-2">
+                  <button type="submit" class="button">Save weekly review</button>
+                </div>
+              </form>
+            </article>
+          </section>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="page-shell footer-grid">
+      <section>
+        <p class="eyebrow">App philosophy</p>
+        <h3>Bias the system toward finishing.</h3>
+        <p>Limit active work, park distractions early, and let papers remain the primary output layer.</p>
+      </section>
+      <section>
+        <p class="eyebrow">Backup reminder</p>
+        <h3>Export or sync regularly.</h3>
+        <p>Data lives in browser localStorage unless you export JSON or use the optional GitHub gist sync.</p>
+      </section>
+      <section>
+        <p class="eyebrow">Static deployment</p>
+        <h3>Made for GitHub Pages.</h3>
+        <p>No backend, no build process, and no paid infrastructure needed to host the full app.</p>
+      </section>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
